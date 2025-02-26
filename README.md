@@ -1,6 +1,3 @@
-Sure! Below is an example of a `README.md` file for your GitHub repository, explaining how to clone the repo, build and run the Docker image, and open a notebook in JupyterLab.
-
-```markdown
 # JupyterLab Docker Setup
 
 This repository provides a setup for running **JupyterLab** inside a Docker container. The Docker image includes everything you need to run JupyterLab, and the setup allows you to open and work with notebooks seamlessly.
