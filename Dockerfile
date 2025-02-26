@@ -1,20 +1,18 @@
-# Use an official Python runtime as a parent image
-FROM python:3.10-slim
+# Use the official JupyterLab base image
+FROM jupyter/base-notebook:latest
 
-# Set the working directory in the container
-WORKDIR /app
+# Set the working directory to /home/jovyan (default for Jupyter images)
+WORKDIR /home/jovyan
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+# Copy your local requirements.txt into the container
+COPY requirements.txt /home/jovyan/
+COPY playground_notebook.ipynb /home/jovyan/
 
-# Install any needed packages specified in requirements.txt
+# Install any dependencies from the requirements.txt file
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install Jupyter Lab
-RUN pip install jupyterlab
+# Expose port 8888
+EXPOSE 8888
 
-# Make port 80 available to the world outside this container
-EXPOSE 80
-
-# Set the command to start Jupyter Lab
-CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=80", "--no-browser", "--allow-root"]
+# Set the default command to run JupyterLab
+CMD ["start.sh", "jupyter", "lab", "--LabApp.token=''", "--LabApp.allow_origin='*'", "--LabApp.ip='0.0.0.0'"]
